@@ -1,0 +1,17 @@
+name: run unit tests after code change
+
+on:
+  push:
+    branches: 
+      'feature/**'
+      
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+        
+      - name: run unit tests
+        run: mvn test
