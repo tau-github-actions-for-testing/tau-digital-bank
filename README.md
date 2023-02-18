@@ -1,6 +1,6 @@
 # Digital Bank
 
-Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques. The application is an example online digital banking application with integrations into other services.
+Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques. The application is an example online digital banking application with integrations into other services. test
  
 [![Build and Run e2e tests](https://github.com/e2e-pipeline-workshop/digibank-playwright-tests/actions/workflows/run-tests.yml/badge.svg)](https://github.com/e2e-pipeline-workshop/digibank-playwright-tests/actions/workflows/run-tests.yml)
 
