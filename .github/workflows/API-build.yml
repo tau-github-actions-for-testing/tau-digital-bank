@@ -4,10 +4,6 @@ run-name: Build by API from user @${{ github.actor }}
 on: 
   repository_dispatch:
     types: api-build
-    inputs:
-      artifactName:
-        description: 'Artifact name'
-        required: true
 
 jobs:
   build:
@@ -23,9 +19,9 @@ jobs:
         run: mvn -DskipTests -B package --no-transfer-progress --file ./pom.xml
 
       - name: rename Artefakt
-        run: mv ./target/*digitalbank*.war "./target/${{ github.event.client_payload.artefactName }}.war"
+        run: mv ./target/*digitalbank*.war "./target/${{ github.event.client_payload.artifactName }}.war"
 
       - uses: actions/upload-artifact@master
         with:
-          name: ${{ github.event.client_payload.artefactName }}.war
+          name: ${{ github.event.client_payload.artifactName }}.war
           path: ./target/*.war
