@@ -1,4 +1,4 @@
-name: PR lint
+name: PR check naming convention
 
 on:
   pull_request:
