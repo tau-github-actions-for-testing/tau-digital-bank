@@ -5,8 +5,8 @@ on:
   repository_dispatch:
     types: api-build
     inputs:
-      artefactName:
-        description: 'Testsystem IP address'
+      artifactName:
+        description: 'Artifact name'
         required: true
 
 jobs:
