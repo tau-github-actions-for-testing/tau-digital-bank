@@ -69,3 +69,8 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+     
+    - uses: actions/upload-artifact@master
+      with:
+        name: digibank.war
+        path: /home/runner/work/_temp/codeql_databases/*
