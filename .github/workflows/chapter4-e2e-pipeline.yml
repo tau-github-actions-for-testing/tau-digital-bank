@@ -20,6 +20,57 @@ jobs:
       - name: Run Unit Tests
         run: mvn test
   
+      - name: Build with Maven
+        run: mvn -DskipTests -B package --no-transfer-progress --file ./pom.xml
+
+      - name: rename Artefakt
+        run: mv ./target/*digitalbank*.war ./target/digibank.war
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: digibank.war
+          path: ./target/digibank*
+    
+  cleanup:
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: UAT
+    
+    steps: 
+      - name: cleanup destination at $UAT_IP
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.UAT_IP }}
+          port: ${{ vars.UAT_PORT }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: rm -rf ./deployment/*
+
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ vars.UAT_IP }}
+          port: ${{ vars.UAT_PORT }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: './target/digibank.war'
+          target: 'deployment'
+          
+  deploy: 
+    needs: [cleanup]
+    runs-on: ubuntu-latest
+    environment: UAT
+
+    steps:
+      - name: deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.UAT_IP }}
+          port: ${{ vars.UAT_PORT }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: cp -f /home/ec2-user/deployment/target/digibank.war ${{ vars.UAT_TOMCAT }}
+    
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
