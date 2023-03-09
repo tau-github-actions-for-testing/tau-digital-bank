@@ -75,7 +75,10 @@ jobs:
           port: ${{ vars.UAT_PORT }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: rm -rf ./deployment/*
+          script: |
+            rm -rf ./deployment/*
+            rm -rf ./${{UAT_TOMCAT}}/digi*
+            
 
    
     
