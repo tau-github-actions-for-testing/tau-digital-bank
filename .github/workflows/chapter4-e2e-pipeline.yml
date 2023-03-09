@@ -119,3 +119,18 @@ jobs:
       - name: Sleep for 10 seconds
         run: sleep 10s
         shell: bash
+        
+  e2e-tests:
+    needs: [install]
+    runs-on: ubuntu-latest
+    environment: UAT
+    name: Trigger E2E Tests on UAT Environment
+
+    steps:
+      - name: Trigger Workflow from e2e tests with Playwright
+        run: |
+          curl -X POST \
+          -H "Authorization: Bearer ${{ secrets.PAT }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/tau-github-actions-for-testing/tau-digital-bank-e2e-tests/dispatches \
+          -d  '{"event_type": "trigger-tests", "client_payload" : { "sut" : "${{ vars.UAT_IP }}" } }'
