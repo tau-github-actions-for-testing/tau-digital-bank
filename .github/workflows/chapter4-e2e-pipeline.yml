@@ -3,10 +3,6 @@ run-name: Build, Deploy, Test - from user @${{ github.actor }}
 
 on: 
   workflow_dispatch:
-  
-env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs: 
   build:  
@@ -72,7 +68,7 @@ jobs:
     environment: UAT
 
     steps: 
-      - name: "cleanup destination at ${{ UAT_IP }}"
+      - name: "cleanup destination at ${{ vars.UAT_IP }}"
         uses: appleboy/ssh-action@master
         with:
           host: ${{ vars.UAT_IP }}
