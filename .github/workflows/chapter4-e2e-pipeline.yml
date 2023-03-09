@@ -100,3 +100,22 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: './deploy/digibank.war'
           target: 'deployment'
+          
+  install:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    environment: UAT
+
+    steps: 
+      - name: "cleanup destination at ${{ vars.UAT_IP }}"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.UAT_IP }}
+          port: ${{ vars.UAT_PORT }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: cp -f /home/ec2-user/deployment/deploy/digibank.war ${{ vars.UAT_TOMCAT }}
+          
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
