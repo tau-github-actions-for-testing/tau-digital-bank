@@ -79,6 +79,21 @@ jobs:
             rm -rf ./deployment/*
             rm -rf ./${{UAT_TOMCAT}}/digi*
             
-
-   
-    
+  deploy: 
+    needs: [cleanup]
+    runs-on: ubuntu-latest
+    environment: UAT
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: digibank.war
+          path: ./download/
+          
+      - name: deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.UAT_IP }}
+          port: ${{ vars.UAT_PORT }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: cp -f /home/ec2-user/download/digibank.war ${{ vars.UAT_TOMCAT }}
