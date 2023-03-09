@@ -92,7 +92,7 @@ jobs:
       - run: ls -tr ./deploy
           
       - name: deploy
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@master
         with:
           host: ${{ vars.UAT_IP }}
           port: ${{ vars.UAT_PORT }}
