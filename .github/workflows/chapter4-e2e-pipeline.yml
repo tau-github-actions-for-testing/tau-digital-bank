@@ -77,7 +77,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             rm -rf ./deployment/*
-            rm -rf ./${{UAT_TOMCAT}}/digi*
+            rm -rf ./${{ vars.UAT_TOMCAT }}/digi*
             
   deploy: 
     needs: [cleanup]
