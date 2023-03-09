@@ -80,13 +80,16 @@ jobs:
             rm -rf ${{ vars.UAT_TOMCAT }}/digi*
             
   deploy: 
-    needs: [cleanup]
+    needs: [cleanup, build]
     runs-on: ubuntu-latest
     environment: UAT
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: digibank.war
+          name: digibank
+          path: ./deploy
+          
+      - run: ls -tr ./deploy
           
       - name: deploy
         uses: appleboy/ssh-action@master
