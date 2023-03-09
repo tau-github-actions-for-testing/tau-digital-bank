@@ -98,4 +98,4 @@ jobs:
           port: ${{ vars.UAT_PORT }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: cp -f digibank.war ${{ vars.UAT_TOMCAT }}
+          script: cp -fR ./deploy/* ${{ vars.UAT_TOMCAT }}
