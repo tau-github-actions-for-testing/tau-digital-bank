@@ -61,3 +61,21 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+        
+  cleanup:
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: UAT
+
+    steps: 
+      - name: "cleanup destination at ${{ UAT_IP }}"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.UAT_IP }}
+          port: ${{ vars.UAT_PORT }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: rm -rf ./deployment/*
+
+   
+    
