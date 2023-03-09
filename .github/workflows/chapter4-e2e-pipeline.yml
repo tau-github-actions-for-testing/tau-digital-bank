@@ -87,7 +87,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: digibank.war
-          path: ./download/
           
       - name: deploy
         uses: appleboy/ssh-action@master
@@ -96,4 +95,4 @@ jobs:
           port: ${{ vars.UAT_PORT }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: cp -f /home/runner/work/tau-digital-bank/tau-digital-bank/download/digibank.war ${{ vars.UAT_TOMCAT }}
+          script: cp -f digibank.war ${{ vars.UAT_TOMCAT }}
