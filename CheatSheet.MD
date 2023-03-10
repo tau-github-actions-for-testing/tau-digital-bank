@@ -42,7 +42,7 @@ env:
 ## Deploy and Install
 ``` yaml
 ### Build STEP ###
-      - name: cleanup destination at $UAT_IP
+      - name: cleanup destination test at $UAT_IP
         uses: appleboy/ssh-action@master
         with:
           host: ${{ env.UAT_IP }}
