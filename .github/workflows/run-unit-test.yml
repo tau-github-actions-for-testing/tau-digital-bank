@@ -1,0 +1,17 @@
+name: run-unit-test-of-feature-branches
+
+on:
+  push:
+    branches: 
+       'feature/*'
+       
+jobs:
+  run-unit-tests:
+      runs-on: ubuntu-latest
+      
+steps:
+  - name: Checkout
+    uses: actions/checkout@v3.5.2
+  
+  - name: run-unit-test
+    run: mvn test
