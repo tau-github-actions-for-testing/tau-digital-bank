@@ -85,6 +85,8 @@ Digital Bank can be deployed as a single standalone application service or be de
 
 [Mark Asbury](https://github.com/asburymr)
 
+[Matthias ZAX](https://github.com/matthias-zax)
+
 See the additional list of [contributors](https://github.com/digisic/Digital-Bank/graphs/contributors) who participated in this project.
 
 ## License
