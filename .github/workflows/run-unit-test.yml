@@ -1,0 +1,20 @@
+name: Run unit tests on feature branches
+
+on:
+  push:
+    branches:
+      - 'feature/*'
+
+jobs:
+  run-unit-test:
+    runs-on: ubunt-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.0
+
+      - name: run unit test
+      - run: maven script
+    
+
+
