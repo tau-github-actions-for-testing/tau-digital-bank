@@ -52,6 +52,8 @@ Digital Bank can be deployed as a single standalone application service or be de
     * [MySQL Database Deployment](docker-compose/docker-compose-mysql.yml)
     * [PostgreSQL Database Deployment](docker-compose/docker-compose-postgres.yml)
 
+Adding some random placeholder text.
+
 ## Interfaces
 
 * Web Interface ../bank
