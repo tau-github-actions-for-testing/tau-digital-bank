@@ -28,6 +28,7 @@ Digital Bank is a sample application that was developed for exploratory purposes
 
 * To create a deployment package, execute "mvn clean package -DbuildNumber={###}"
 * To create a new Docker image, update the [Dockerfile](Dockerfile) with the latest build number and then execute "docker build -t {imageName}:{imageTag} ."
+* This is just a dummy placeholder, please ignore it.
 
 ## Deployment
 
